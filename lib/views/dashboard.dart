@@ -35,18 +35,7 @@ class Dashboard extends StatelessWidget {
           BfButton(
             height: 132,
             width: 320,
-            onPressed: () async {
-              final a = TechSupportQuestion(
-                userId: 1,
-                typeRequest: 19785,
-                typeQuestion: 19795,
-                message: "pain",
-                images: [],
-              );
-              final req = getIt<HttpRequestsCore>().techSupportRequests;
-              final s = await req.postSupportRequest(a);
-              print(s);
-            },
+            onPressed: () => {},
             picture: SvgPicture.asset(
               'assets/chat_cloud.svg',
             ),
@@ -55,7 +44,7 @@ class Dashboard extends StatelessWidget {
           BfButton(
             height: 132,
             width: 320,
-            onPressed: () => print('ciao'),
+            onPressed: () => {},
             picture: SvgPicture.asset(
               'assets/hand_stop_sign.svg',
             ),

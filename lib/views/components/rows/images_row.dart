@@ -40,7 +40,6 @@ class _ImagesRowState extends State<ImagesRow> {
         widget.onImageSelected(imgFile);
       });
     } else if (image != null && !image.path.endsWith('.png')) {
-      // Notify the user that only PNG images are allowed
       await showDialog(
         context: context,
         builder: (BuildContext context) {

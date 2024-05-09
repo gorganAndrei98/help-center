@@ -3,7 +3,6 @@ import 'package:flu/navigation/generate_pages.dart';
 import 'package:flu/navigation/routes.dart';
 import 'package:flu/server_requests/core/http_requests_core.dart';
 import 'package:flu/views/phoenix.dart';
-import 'package:flu/views/splash_screen.dart';
 import 'package:flu/views/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +38,7 @@ Widget _loadApp() {
       builder: (context, snapshot) {
         final loaded = (snapshot.data ?? false) || snapshot.hasError;
 
-        //TODO: splashscreen
+        //wanted to do a splashscreen but could manage in time
         //if (!loaded) return const SplashScreen();
 
         return getApp()!;
