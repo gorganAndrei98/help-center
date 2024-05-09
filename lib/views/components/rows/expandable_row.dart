@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//I'm making it specific to the question types for the sake of the exercise
 class ExpandableRow extends StatefulWidget {
   final double radius;
   final String? informationAsString;
@@ -52,10 +51,7 @@ class _ExpandableRowState extends State<ExpandableRow> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(13),
-                    child:
-                        Text(
-                          _currentChoice ?? widget.informationAsString!,
-                        ),
+                    child: Text(_currentChoice ?? widget.informationAsString!),
                   ),
                 ),
                 Padding(
@@ -72,22 +68,24 @@ class _ExpandableRowState extends State<ExpandableRow> {
             ),
             if (_isExpanded && allowExpansion) Divider(height: 1),
             if (_isExpanded && allowExpansion)
-              ...widget.choices.map((choice) {
-                return GestureDetector(
-                  onTap: () {
-                    widget.onChoiceSelected(choice);
-                    setState(() {
-                      _currentChoice = choice;
-                      _isExpanded = false;
-                    });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 13),
-                    alignment: Alignment.centerLeft,
-                    child: Text(choice),
+              ...widget.choices.map((choice) => GestureDetector(
+                onTap: () {
+                  widget.onChoiceSelected(choice);
+                  setState(() {
+                    _currentChoice = choice;
+                    _isExpanded = false;
+                  });
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 13),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
                   ),
-                );
-              }).toList(),
+                  width: double.infinity,
+                  child: Text(choice),
+                ),
+              )).toList(),
           ],
         ),
       ),
