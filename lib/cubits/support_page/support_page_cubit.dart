@@ -32,6 +32,10 @@ class SupportPageCubit extends Cubit<SupportPageCubitState> {
         questionTypes: result[1], status: SupportPageStatus.success));
   }
 
+  void setApiError() {
+    emit(state.copyWith(simulateApiError: !state.simulateApiError));
+  }
+
   void updateSelectedQuestionType(String input) {
     final selectedQuestionType =
         state.questionTypes.firstWhere((element) => element.domValue == input);
@@ -99,6 +103,7 @@ class SupportPageCubitState {
   final String? freeText;
   final List<String> filePaths;
   final SupportPageStatus status;
+  final bool simulateApiError;
 
   SupportPageCubitState({
     this.selectedQuestionType,
@@ -106,6 +111,7 @@ class SupportPageCubitState {
     required this.filePaths,
     required this.questionTypes,
     required this.status,
+    this.simulateApiError = false,
   });
 
   @override
@@ -119,6 +125,7 @@ class SupportPageCubitState {
     String? freeText,
     List<String>? filePaths,
     SupportPageStatus? status,
+    bool? simulateApiError,
   }) {
     return SupportPageCubitState(
       selectedQuestionType: selectedQuestionType ?? this.selectedQuestionType,
@@ -126,6 +133,7 @@ class SupportPageCubitState {
       filePaths: filePaths ?? this.filePaths,
       freeText: freeText ?? this.freeText,
       status: status ?? this.status,
+      simulateApiError: simulateApiError ?? this.simulateApiError,
     );
   }
 }

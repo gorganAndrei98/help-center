@@ -122,7 +122,7 @@ class _SupportAppPageState extends State<_SupportAppPage> {
                   ),
 
                   const Text(
-                    "Aggiungi immagini",
+                    "Aggiungi immagini (massimo 5)",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
 
@@ -160,47 +160,56 @@ class _SupportAppPageState extends State<_SupportAppPage> {
                     ),
                   ),
                 ),
-                TextButton(
-                  onPressed: () async {
-                    if (_checkFields()) {
-                      final res = await context
-                          .read<SupportPageCubit>()
-                          .sendSupportRequest();
-                      await showDialog<bool>(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) => FeedbackDialog(
-                                isPositive: res.success,
-                              )).then((res) {
-                        if (res == true) {
-                          final nav = Navigator.of(context);
-                          final modalRoute =
-                              ModalRoute.withName(Routes.DASHBOARD);
-                          nav.popUntil(
-                              (route) => modalRoute(route) || route.isFirst);
-                        }
-                      });
-                    } else {
-                      UITemplates.showToast(
-                          "Controlla i campi", ToastType.Error);
-                    }
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        _checkFields() ? Colors.green : Colors.grey),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        side: BorderSide(
-                            color: _checkFields() ? Colors.green : Colors.grey),
-                      ),
+                Row(
+                  children: [
+                    Text("Simula errore api"),
+                    Checkbox(
+                        value: state.simulateApiError,
+                        onChanged: (_) => context.read<SupportPageCubit>().setApiError()
                     ),
-                  ),
-                  child: const Text('Invia',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                    TextButton(
+                      onPressed: () async {
+                        if (_checkFields()) {
+                          final res = await context
+                              .read<SupportPageCubit>()
+                              .sendSupportRequest();
+                          await showDialog<bool>(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (context) => FeedbackDialog(
+                                    isPositive: state.simulateApiError ? false : res.success,
+                                  )).then((res) {
+                            if (res == true) {
+                              final nav = Navigator.of(context);
+                              final modalRoute =
+                                  ModalRoute.withName(Routes.DASHBOARD);
+                              nav.popUntil(
+                                  (route) => modalRoute(route) || route.isFirst);
+                            }
+                          });
+                        } else {
+                          UITemplates.showToast(
+                              "Controlla i campi", ToastType.Error);
+                        }
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            _checkFields() ? Colors.green : Colors.grey),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(
+                                color: _checkFields() ? Colors.green : Colors.grey),
+                          ),
+                        ),
+                      ),
+                      child: const Text('Invia',
+                          style:
+                              TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                    ),
+                  ],
                 ),
               ],
             ),
