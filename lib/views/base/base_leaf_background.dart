@@ -12,9 +12,7 @@ class BaseLeafBackground extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Stack(
-          //alignment: AlignmentDirectional.center,
           children: [
-            //background leafs
             Container(
               padding: EdgeInsets.fromLTRB(0, 121, 15, 177),
               child: Stack(
@@ -28,11 +26,10 @@ class BaseLeafBackground extends StatelessWidget {
                       child: Container(
                         width: 256,
                         height: 339,
-                        padding: EdgeInsets.fromLTRB(0.5, 0.6, 0.1, 0.5),
-                        child: SizedBox(
-                          width: 255.4,
-                          height: 337.9,
-                          child: SvgPicture.asset('assets/leaf_left.svg'),
+                        child: SvgPicture.asset(
+                          'assets/leaf_left.svg',
+                          width: 256,
+                          height: 339,
                         ),
                       ),
                     ),
@@ -45,11 +42,10 @@ class BaseLeafBackground extends StatelessWidget {
                       child: Container(
                         width: 172,
                         height: 228,
-                        padding: EdgeInsets.fromLTRB(0.5, 0.7, 0.1, 0.5),
-                        child: SizedBox(
-                          width: 171.4,
-                          height: 226.8,
-                          child: SvgPicture.asset('assets/leaf_right.svg'),
+                        child: SvgPicture.asset(
+                          'assets/leaf_right.svg',
+                          width: 172,
+                          height: 228,
                         ),
                       ),
                     ),
@@ -57,38 +53,33 @@ class BaseLeafBackground extends StatelessWidget {
                 ],
               ),
             ),
-            //top background green wave
-            Container(
-              //margin: EdgeInsets.fromLTRB(34, 0, 34, 64),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 0,
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: 109,
-                        child: SvgPicture.asset(
-                          'assets/top_background.svg',
-                        ),
-                      ),
-                    ),
-                  ],
+            // Top background green wave
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 109,
+                child: SvgPicture.asset(
+                  'assets/top_background.svg',
+                  fit: BoxFit.fill, // This will stretch the image across the width
                 ),
               ),
             ),
-            Center(child: child),
+            Center(child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: child,
+            )),
             if (hasBackButton)
               Container(
                 margin: EdgeInsets.fromLTRB(15, 15, 0, 0),
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white
+                    shape: BoxShape.circle,
+                    color: Colors.white
                 ),
                 child: IconButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    icon: Icon(Icons.arrow_back_ios_new)),
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: Icon(Icons.arrow_back_ios_new),
+                ),
               )
           ],
         ),

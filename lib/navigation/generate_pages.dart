@@ -1,6 +1,7 @@
 import 'package:flu/navigation/routes.dart';
 import 'package:flu/views/base/base_leaf_background.dart';
 import 'package:flu/views/support_app.dart';
+import 'package:flu/views/vibin.dart';
 import 'package:flutter/material.dart';
 
 import '../views/dashboard.dart';
@@ -19,7 +20,7 @@ Widget _internalGeneratePage(RouteSettings settings) {
     case Routes.SUPPORT_APP:
       return const SupportApp();
     case Routes.TEST:
-      return BaseLeafBackground(child: Text('test'));
+      return Vibin();
     default:
       throw ArgumentError.value(settings.name, 'settings.name');
   }

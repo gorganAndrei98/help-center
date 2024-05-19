@@ -35,11 +35,11 @@ class Dashboard extends StatelessWidget {
           BfButton(
             height: 132,
             width: 320,
-            onPressed: () => {},
+            onPressed: () => _handleOnTap(context, Routes.TEST),
             picture: SvgPicture.asset(
               'assets/chat_cloud.svg',
             ),
-            text: 'Dicci cosa ne pensi',
+            text: 'Go to the viber',
           ),
           BfButton(
             height: 132,
