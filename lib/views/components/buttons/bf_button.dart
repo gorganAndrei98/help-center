@@ -42,7 +42,10 @@ class BfButton extends StatelessWidget {
                   flex: 1,
                   child: Container(
                     alignment: Alignment.center,
-                    child: picture,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: picture,
+                    ),
                   ),
                 ),
                 Expanded(
