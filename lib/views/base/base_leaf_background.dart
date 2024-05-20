@@ -61,7 +61,7 @@ class BaseLeafBackground extends StatelessWidget {
                 height: 109,
                 child: SvgPicture.asset(
                   'assets/top_background.svg',
-                  fit: BoxFit.fill, // This will stretch the image across the width
+                  fit: BoxFit.fill, 
                 ),
               ),
             ),
