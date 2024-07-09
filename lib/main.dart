@@ -12,10 +12,7 @@ void main() {
   setUpLocator();
   runApp(
     Phoenix(
-      child: Theme(
-        data: AppTheme.base,
-        child: _loadApp(),
-      ),
+      child: _loadApp(),
     ),
   );
 }
