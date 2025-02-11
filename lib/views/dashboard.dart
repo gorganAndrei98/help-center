@@ -50,6 +50,15 @@ class Dashboard extends StatelessWidget {
             ),
             text: 'Segnala un errore',
           ),
+          BfButton(
+            height: 132,
+            width: 320,
+            onPressed: () => _handleOnTap(context, Routes.LEZIONE),
+            picture: SvgPicture.asset(
+              'assets/operator.svg',
+            ),
+            text: 'Lezione',
+          ),
         ]
             .map((e) => Padding(
                   padding: const EdgeInsets.all(8.0),

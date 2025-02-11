@@ -1,9 +1,11 @@
 import 'package:flu/navigation/routes.dart';
 import 'package:flu/views/base/base_leaf_background.dart';
+import 'package:flu/views/lezione.dart';
 import 'package:flu/views/support_app.dart';
 import 'package:flu/views/vibin.dart';
 import 'package:flutter/material.dart';
 
+import '../views/cubit_app.dart';
 import '../views/dashboard.dart';
 
 typedef HcPageBuilder = Widget Function(RouteSettings routeSettings,);
@@ -21,6 +23,10 @@ Widget _internalGeneratePage(RouteSettings settings) {
       return const SupportApp();
     case Routes.TEST:
       return Vibin();
+    case Routes.LEZIONE:
+      return LezioneApp();
+    case Routes.CUBIT_APP:
+      return CubitApp();
     default:
       throw ArgumentError.value(settings.name, 'settings.name');
   }

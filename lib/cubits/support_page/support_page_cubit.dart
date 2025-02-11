@@ -22,7 +22,7 @@ class SupportPageCubit extends Cubit<SupportPageCubitState> {
     if (isClosed) return;
     emit(state.copyWith(status: SupportPageStatus.loading));
 
-    final delay = Future.delayed(const Duration(milliseconds: 500));
+    final delay = Future.delayed(const Duration(microseconds: 500));
     final fetchData = () async {
       return requests.getAll();
     }();
